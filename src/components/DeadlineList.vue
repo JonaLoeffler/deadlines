@@ -1,19 +1,25 @@
 <template>
-  <ul>
-    <Deadline :deadline="deadline" v-for="deadline in deadlines" v-bind:key="deadline"></Deadline>
-  </ul>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <ul>
+          <Deadline :deadline="deadline" v-for="deadline in sorted"></Deadline>
+        </ul>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
 import Deadline from "./Deadline";
+import { mapGetters } from "vuex";
+
 export default {
   components: {
     Deadline
   },
-  data() {
-    return {
-      deadlines: [1543686967656]
-    };
+  computed: {
+    ...mapGetters(["sorted"])
   }
 };
 </script>

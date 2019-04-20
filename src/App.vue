@@ -1,24 +1,27 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <DeadlineList msg="Welcome to new Your Vue.js App"/>
+    <deadline-list></deadline-list>
+
+    <deadline-create></deadline-create>
   </div>
 </template>
 
 <script>
-import DeadlineList from './components/DeadlineList.vue'
+import DeadlineList from "./components/DeadlineList";
+import DeadlineCreate from "./components/DeadlineCreate";
 
 export default {
-  name: 'app',
+  name: "app",
   components: {
-    DeadlineList
+    DeadlineList,
+    DeadlineCreate
   }
-}
+};
 </script>
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
