@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-12">
         <ul>
-          <Deadline :deadline="deadline" v-for="deadline in sorted"></Deadline>
+          <Deadline :deadline="deadline" v-for="deadline in future" :key="deadline.id"></Deadline>
         </ul>
       </div>
     </div>
@@ -19,7 +19,7 @@ export default {
     Deadline
   },
   computed: {
-    ...mapGetters(["sorted"])
+    ...mapGetters(["future", "past"])
   }
 };
 </script>

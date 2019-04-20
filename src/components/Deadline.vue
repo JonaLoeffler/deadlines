@@ -20,12 +20,17 @@ export default {
   data() {
     return {
       now: Math.trunc(new Date().getTime() / 1000)
-    }
+    };
   },
   mounted() {
     window.setInterval(() => {
-      this.now = Math.trunc(new Date().getTime() / 1000)
-    })
+      this.now = Math.trunc(new Date().getTime() / 1000);
+    });
+  },
+  methods: {
+    pad: function(value) {
+      return String("00" + value).slice(-2);
+    }
   },
   computed: {
     formatted: function() {
@@ -37,7 +42,7 @@ export default {
           " Monate, " +
           this.days +
           " Tage, "
-        )
+        );
       } else if (this.days > 1) {
         return (
           this.months +
@@ -46,32 +51,38 @@ export default {
           " Tage, " +
           this.hours +
           " Stunden"
-        )
+        );
       } else {
-        return this.hours + ":" + this.minutes + ":" + this.seconds
+        return (
+          this.pad(this.hours) +
+          ":" +
+          this.pad(this.minutes) +
+          ":" +
+          this.pad(this.seconds)
+        );
       }
     },
     remaining: function() {
-      return new Date(this.deadline.date - this.now * 1000)
+      return new Date(this.deadline.timestamp - this.now * 1000);
     },
     years: function() {
-      return this.remaining.getFullYear() - 1970 || 0
+      return this.remaining.getFullYear() - 1970 || 0;
     },
     months: function() {
-      return this.remaining.getMonth() || 0
+      return this.remaining.getMonth() || 0;
     },
     days: function() {
-      return this.remaining.getDate() || 0
+      return this.remaining.getDate() || 0;
     },
     hours: function() {
-      return this.remaining.getHours() || 0
+      return this.remaining.getHours() || 0;
     },
     minutes: function() {
-      return this.remaining.getMinutes() || 0
+      return this.remaining.getMinutes() || 0;
     },
     seconds: function() {
-      return this.remaining.getSeconds() || 0
+      return this.remaining.getSeconds() || 0;
     }
   }
-}
+};
 </script>

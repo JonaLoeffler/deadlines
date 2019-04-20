@@ -16,7 +16,7 @@
               <input class="form-control" type="time" v-model="deadline.time">
             </div>
           </div>
-          <div class="form-group form-ro">
+          <div class="form-group form-row">
             <div class="col">
               <input type="text" class="form-control" v-model="title">
             </div>
@@ -42,6 +42,8 @@ export default {
     return {
       deadline: {
         title: "",
+        time: null,
+        date: null,
         timestamp: new Date()
       },
       title: ""
@@ -50,13 +52,6 @@ export default {
   methods: {
     ...mapMutations(["addDeadline"])
   },
-  watch: {
-    title: function(value) {
-      console.log("watching");
-      this.deadline.date.setHours(this.deadline.time.slice(0, 2));
-      this.deadline.date.setMinutes(this.deadline.time.slice(-2));
-    }
-  }
 };
 </script>
 
