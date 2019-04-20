@@ -1,4 +1,4 @@
-# deadlines
+# Deadlines
 
 ## Project setup
 ```

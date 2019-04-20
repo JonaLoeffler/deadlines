@@ -1,5 +1,8 @@
 export default {
     state: {
+        meta: {
+            overlay: false
+        },
         deadlines: [
             {
                 "id": 1,
@@ -37,16 +40,20 @@ export default {
             )
 
             state.deadlines.push({
-                id:  Math.floor((Math.random() * 100000) + 1),
+                id: Math.floor((Math.random() * 100000) + 1),
                 title: payload.deadline.title,
                 timestamp: date
             });
+        },
+        toggleOverlay(state) {
+            state.meta.overlay = !state.meta.overlay
         }
     },
     getters: {
-        deadlines: state => { return state.deadlines },
-        sorted: state => { return state.deadlines.sort((a, b) => a.timestamp > b.timestamp) },
-        future: (state, getters) => { return getters.sorted.filter(deadline => deadline.timestamp >= new Date().getTime()) },
-        past: (state, getters) => { return getters.sorted.filter(deadline => deadline.timestamp < new Date().getTime()) }
+        deadlines: state => state.deadlines,
+        sorted: state => state.deadlines.sort((a, b) => a.timestamp > b.timestamp),
+        future: (state, getters) => getters.sorted.filter(deadline => deadline.timestamp >= new Date().getTime()),
+        past: (state, getters) => getters.sorted.filter(deadline => deadline.timestamp < new Date().getTime()),
+        overlay: state => state.meta.overlay
     }
 }
