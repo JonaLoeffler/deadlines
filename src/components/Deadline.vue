@@ -5,7 +5,9 @@
     <!--  1 Year > x > 1 D:     M D H -->
     <!--  1 Year > x > 1 D:     D H m -->
     <!--  1 Year > x > 1 D:     H m s -->
-    {{ formatted }}
+    <div class="form-group">
+      <button class="btn btn-primary btn-block">{{deadline.title}}: {{formatted}}</button>
+    </div>
   </li>
 </template>
 

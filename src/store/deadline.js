@@ -1,6 +1,27 @@
 export default {
     state: {
-        deadlines: []
+        deadlines: [
+            {
+                "id": 1,
+                "title": "Deadline 1",
+                "timestamp": 1555891200000
+            },
+            {
+                "id": 2,
+                "title": "Deadline 2",
+                "timestamp": 1555891200000
+            },
+            {
+                "id": 3,
+                "title": "Deadline 3",
+                "timestamp": 1555891200000
+            },
+            {
+                "id": 4,
+                "title": "Deadline 4",
+                "timestamp": 1555891200000
+            },
+        ]
     },
     mutations: {
         addDeadline(state, payload) {
