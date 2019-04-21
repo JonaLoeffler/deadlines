@@ -16,7 +16,7 @@
       <div class="form-group form-row">
         <div class="col-12">
           <label>Titel</label>
-          <input type="text" class="form-control" v-model="deadline.title" required>
+          <input type="text" class="form-control" v-model="deadline.title" required autofocus>
         </div>
       </div>
       <div class="form-group form-row">
