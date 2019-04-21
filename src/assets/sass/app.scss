@@ -1,0 +1,39 @@
+@import 'forms';
+@import 'buttons';
+@import 'transitions';
+
+#app {
+  color: #fff;
+  min-height: 100vh;
+  background-color: #2b2b2b;
+}
+
+#title {
+  padding: 15px 20px;
+  background-color: #03a9f4;
+}
+
+#title h1 {
+  margin-bottom: 0;
+}
+
+#form {
+  border-left: 2px solid #03a9f4;
+}
+
+#add {
+  position: absolute;
+  right: 30px;
+  bottom: 30px;
+}
+
+#form-overlay {
+  position: absolute;
+  top: 78px;
+  width: 100%;
+  /* right: 0;
+  left: 0; */
+  background-color: #2b2b2b;
+}
+
+

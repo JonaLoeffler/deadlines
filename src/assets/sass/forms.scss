@@ -1,0 +1,21 @@
+input.form-control,
+input.form-control:read-only {
+  color: #fff;
+  padding: 15px 25px;
+  border-radius: 50px;
+  border: 2px solid #3b3b3b;
+  background-color: #3b3b3b;
+}
+
+input.form-control:focus {
+  color: #fff;
+  border: 2px solid #03a9f4;
+  background-color: #3b3b3b;
+}
+
+.vdp-datepicker__calendar {
+  width: 100% !important;
+  background-color: #3b3b3b !important;
+  border: none !important;
+  border-radius: 15px !important;
+}
