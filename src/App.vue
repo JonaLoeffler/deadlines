@@ -155,9 +155,9 @@ input.form-control:focus {
 }
 
 .vdp-datepicker__calendar {
-  width: 100%;
-  background-color: #3b3b3b;
-  border: none;
-  border-radius: 15px;
+  width: 100% !important;
+  background-color: #3b3b3b !important;
+  border: none !important;
+  border-radius: 15px !important;
 }
 </style>
