@@ -1,6 +1,6 @@
 <template>
   <ul class="list-unstyled">
-    <Deadline :deadline="deadline" v-for="deadline in future" :key="deadline.id"></Deadline>
+    <Deadline v-for="deadline in future" :key="deadline.id" :deadline="deadline"></Deadline>
   </ul>
 </template>
 

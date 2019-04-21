@@ -23,7 +23,7 @@
 
     <transition name="slide">
       <div id="form-overlay" class="d-lg-none" v-if="overlay">
-        <div class="container py-4">
+        <div class="container">
           <div class="row">
             <div class="col">
               <deadline-form></deadline-form>

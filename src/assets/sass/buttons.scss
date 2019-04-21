@@ -1,23 +1,53 @@
+.btn {
+  &:active {
+    transform: translateY(2px);
+    transition: transform 0.2s ease;
+  }
+
+  &.focus,
+  &:focus {
+    box-shadow: none !important;
+  }
+}
+
+.btn-primary:not(:disabled):not(.disabled).active,
+.btn-primary:not(:disabled):not(.disabled):active,
+.show > .btn-primary.dropdown-toggle {
+  background-color: $background-light;
+  border-color: $brand-primary;
+}
+
 .btn-primary {
-  border: 2px solid #3b3b3b;
+  border: 2px solid $background-light;
   padding: 15px 25px;
   color: #fff;
   border-radius: 50px;
-  background-color: #3b3b3b;
-}
+  background-color: $background-light;
 
-.btn-primary:hover {
-  background-color: #3b3b3b;
-  border: 2px solid #03a9f4;
+  &:hover {
+    background-color: $background-light;
+    border: 2px solid $brand-primary;
+  }
 }
 
 .btn-fab {
+  color: #fff;
   padding: 15px 20px;
   border-radius: 50px;
   background-color: rgb(230, 18, 18);
   border: none !important;
+
+  &:hover,
+  &:active {
+    background-color: rgb(194, 15, 15);
+  }
 }
-.btn-fab:hover,
-.btn-fab:active {
-  background-color: rgb(194, 15, 15);
+
+.btn-close {
+  color: #fff;
+  background-color: transparent;
+  &:hover {
+    color: lightgray;
+  }
 }
+

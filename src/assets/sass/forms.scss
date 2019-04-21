@@ -3,19 +3,25 @@ input.form-control:read-only {
   color: #fff;
   padding: 15px 25px;
   border-radius: 50px;
-  border: 2px solid #3b3b3b;
-  background-color: #3b3b3b;
+  border: 2px solid $background-light;
+  background-color: $background-light;
 }
 
 input.form-control:focus {
   color: #fff;
   border: 2px solid #03a9f4;
-  background-color: #3b3b3b;
+  background-color: $background-light;
+
+  box-shadow: none !important;
+}
+
+label {
+  margin-left: 15px;
 }
 
 .vdp-datepicker__calendar {
   width: 100% !important;
-  background-color: #3b3b3b !important;
+  background-color: $background-light !important;
   border: none !important;
   border-radius: 15px !important;
 }

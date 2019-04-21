@@ -8,8 +8,8 @@
 }
 
 .slide-enter-active {
-  animation: enter 0.3s ease;
+  animation: enter .3s ease-in-out;
 }
 .slide-leave-active {
-  animation: enter 0.3s ease reverse;
+  animation: enter .3s ease-in-out reverse;
 }

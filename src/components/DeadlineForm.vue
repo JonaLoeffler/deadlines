@@ -3,7 +3,7 @@
     <h3>
       Deadline erstellen
       <button
-        class="btn btn-dark float-right"
+        class="btn btn-close float-right"
         v-if="overlay"
         @click="toggleOverlay()"
       >
