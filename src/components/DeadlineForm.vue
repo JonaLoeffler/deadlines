@@ -1,12 +1,10 @@
 <template>
   <div>
     <h3>
-      Deadline erstellen
-      <button
-        class="btn btn-close float-right"
-        v-if="overlay"
-        @click="toggleOverlay()"
-      >
+      Deadline
+      <span v-if="deadlineToEdit">bearbeiten</span>
+      <span v-if="!deadlineToEdit">erstellen</span>
+      <button class="btn btn-close float-right" v-if="overlay" @click="toggleOverlay()">
         <i class="fa fa-times"></i>
       </button>
     </h3>
@@ -53,25 +51,45 @@ export default {
   components: {
     Datepicker
   },
-  
+
   data() {
     return {
       deadline: {
+        id: null,
         title: "",
-        time: new Date().getHours() + ":" + new Date().getMinutes(),
-        date: new Date(),
-        timestamp: new Date()
+        time:
+          this.pad(new Date().getHours()) +
+          ":" +
+          this.pad(new Date().getMinutes() + 5),
+        date: new Date()
       }
     };
   },
   computed: {
-    ...mapGetters(["overlay"])
+    ...mapGetters(["overlay", "deadlineToEdit"])
   },
   methods: {
-    ...mapMutations(["addDeadline", "toggleOverlay"]),
+    ...mapMutations(["addOrUpdate", "toggleOverlay"]),
     submit: function() {
-      this.addDeadline({ deadline: this.deadline });
+      this.addOrUpdate(this.deadline);
+
       this.toggleOverlay();
+    },
+    pad: function(value) {
+      return String("00" + value).slice(-2);
+    }
+  },
+  mounted() {
+    if (this.deadlineToEdit) {
+      var date = new Date(this.deadlineToEdit.timestamp);
+      var time = this.pad(date.getHours()) + ":" + this.pad(date.getMinutes());
+
+      this.deadline = {
+        id: this.deadlineToEdit.id,
+        title: this.deadlineToEdit.title,
+        date: date,
+        time: time
+      };
     }
   }
 };

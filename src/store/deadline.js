@@ -1,56 +1,73 @@
 export default {
     state: {
         meta: {
-            overlay: false
+            overlay: false,
+            editId: null
         },
-        deadlines: [
-            // {
-            //     "id": 1,
-            //     "title": "Deadline 1",
-            //     "timestamp": 1555891200000
-            // },
-            // {
-            //     "id": 2,
-            //     "title": "Deadline 2",
-            //     "timestamp": 1555891200000
-            // },
-            // {
-            //     "id": 3,
-            //     "title": "Deadline 3",
-            //     "timestamp": 1555891200000
-            // },
-            // {
-            //     "id": 4,
-            //     "title": "Deadline 4",
-            //     "timestamp": 1555891200000
-            // },
-        ]
+        deadlines: []
     },
     mutations: {
-        addDeadline(state, payload) {
+        addOrUpdate(state, payload) {
             var date = new Date(
-                payload.deadline.date.getTime()
+                payload.date.getTime()
             );
 
             date.setHours(
-                payload.deadline.time.substring(0, 2)
+                payload.time.substring(0, 2)
             )
             date.setMinutes(
-                payload.deadline.time.substring(3, 5)
+                payload.time.substring(3, 5)
             )
 
-            state.deadlines.push({
-                id: Math.floor((Math.random() * 100000) + 1),
-                title: payload.deadline.title,
+            var newDeadline = {
+                id: payload.id ? payload.id : Math.floor((Math.random() * 100000) + 1),
+                title: payload.title,
                 timestamp: date
-            });
+            }
+
+            if (!payload.id) {
+                state.deadlines.push(newDeadline);
+            } else {
+                var index = state.deadlines.findIndex(deadline => deadline.id === payload.id)
+
+                state.deadlines.splice(index, 1, newDeadline)
+            }
         },
         toggleOverlay(state) {
             state.meta.overlay = !state.meta.overlay
+        },
+        showOverlay(state) {
+            state.meta.overlay = true;
+        },
+        hideOverlay(state) {
+            state.meta.overlay = false;
+        },
+        setEditId(state, id) {
+            state.meta.editId = id
+        },
+        clearEditId(state) {
+            state.meta.editId = null
+        }
+    },
+    actions: {
+        createDeadline({ commit }) {
+            commit('clearEditId')
+
+            commit('showOverlay')
+        },
+        editDeadline({ commit }, payload) {
+            commit('hideOverlay')
+
+            setTimeout(() => {
+                commit('setEditId', payload.id)
+
+                commit('showOverlay')
+            }, 300);
         }
     },
     getters: {
         deadlines: state => state.deadlines,
+        deadlineToEdit: state => state.deadlines.find(deadline => deadline.id === state.meta.editId),
         sorted: state => state.deadlines.sort((a, b) => a.timestamp > b.timestamp),
         future: (state, getters) => getters.sorted.filter(deadline => deadline.timestamp >= new Date().getTime()),
         past: (state, getters) => getters.sorted.filter(deadline => deadline.timestamp < new Date().getTime()),

@@ -6,7 +6,10 @@
     <!--  1 Year > x > 1 D:     D H m -->
     <!--  1 Year > x > 1 D:     H m s -->
     <div class="form-group">
-      <button class="btn btn-primary btn-block">{{deadline.title}}: {{formatted}}</button>
+      <button
+        class="btn btn-primary btn-block"
+        @click="$emit('edit-deadline', deadline.id)"
+      >{{deadline.title}}: {{formatted}}</button>
     </div>
   </li>
 </template>

@@ -23,7 +23,7 @@
       </div>
       <div class="row">
         <div class="col text-right">
-          <button id="add" class="btn btn-fab" @click="toggleOverlay()" v-if="!overlay">
+          <button id="add" class="btn btn-fab" @click="createDeadline()" v-if="!overlay">
             <i class="fa fa-plus"></i>
           </button>
         </div>
@@ -35,7 +35,7 @@
 <script>
 import DeadlineList from "./components/DeadlineList";
 import DeadlineForm from "./components/DeadlineForm";
-import { mapGetters, mapMutations } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "app",
@@ -47,7 +47,7 @@ export default {
     ...mapGetters(["overlay"])
   },
   methods: {
-    ...mapMutations(["toggleOverlay"])
+    ...mapActions(["createDeadline"])
   }
 };
 </script>
