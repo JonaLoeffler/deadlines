@@ -12,35 +12,23 @@
 
     <div class="container mt-4">
       <div class="row">
-        <div id="list" class="col-lg-8">
+        <div id="list" class="col">
           <deadline-list></deadline-list>
         </div>
-        <div id="form" class="col-lg-4 d-none d-lg-block">
-          <deadline-form></deadline-form>
+        <transition name="slide">
+          <div id="form-overlay" class="col col-md-4" v-if="overlay">
+            <deadline-form></deadline-form>
+          </div>
+        </transition>
+      </div>
+      <div class="row">
+        <div class="col text-right">
+          <button id="add" class="btn btn-fab" @click="toggleOverlay()" v-if="!overlay">
+            <i class="fa fa-plus"></i>
+          </button>
         </div>
       </div>
     </div>
-
-    <transition name="slide">
-      <div id="form-overlay" class="d-lg-none" v-if="overlay">
-        <div class="container">
-          <div class="row">
-            <div class="col">
-              <deadline-form></deadline-form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </transition>
-
-    <button
-      id="add"
-      class="btn btn-fab d-md-block d-lg-none"
-      @click="toggleOverlay()"
-      v-if="!overlay"
-    >
-      <i class="fa fa-plus"></i>
-    </button>
   </div>
 </template>
 
@@ -65,5 +53,5 @@ export default {
 </script>
 
 <style lang="scss">
-  @import './assets/sass/app.scss';
+@import "./assets/sass/app.scss";
 </style>

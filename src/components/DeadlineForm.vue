@@ -38,8 +38,8 @@
           <input class="form-control" type="time" v-model="deadline.time" required>
         </div>
       </div>
-      <div class="form-group">
-        <button type="submit" class="btn btn-primary float-right">Speichern</button>
+      <div class="form-group text-right">
+        <button type="submit" class="btn btn-primary">Speichern</button>
       </div>
     </form>
   </div>
@@ -53,6 +53,7 @@ export default {
   components: {
     Datepicker
   },
+  
   data() {
     return {
       deadline: {
