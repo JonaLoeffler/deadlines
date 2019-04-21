@@ -1,7 +1,7 @@
 {
     "name": "Deadlines",
     "short_name": "Deadlines",
-    "start_url": "/",
+    "start_url": "/deadlines",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
