@@ -45,7 +45,7 @@
 
 <script>
 import Datepicker from "vuejs-datepicker";
-import { mapMutations, mapGetters } from "vuex";
+import { mapMutations, mapActions, mapGetters } from "vuex";
 
 export default {
   components: {
@@ -69,9 +69,12 @@ export default {
     ...mapGetters(["overlay", "deadlineToEdit"])
   },
   methods: {
-    ...mapMutations(["addOrUpdate", "toggleOverlay"]),
+    ...mapMutations(["toggleOverlay"]),
+    ...mapActions(["addOrUpdate", "saveDeadlines"]),
     submit: function() {
       this.addOrUpdate(this.deadline);
+
+      this.saveDeadlines();
 
       this.toggleOverlay();
     },

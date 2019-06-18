@@ -22,7 +22,10 @@ export default {
     ...mapGetters(["future", "past"])
   },
   methods: {
-    ...mapActions(["editDeadline"])
+    ...mapActions(["editDeadline", "saveDeadlines", "restoreDeadlines"])
+  },
+  mounted() {
+    this.restoreDeadlines();
   }
 };
 </script>

@@ -7,31 +7,15 @@ export default {
         deadlines: []
     },
     mutations: {
-        addOrUpdate(state, payload) {
-            var date = new Date(
-                payload.date.getTime()
-            );
-
-            date.setHours(
-                payload.time.substring(0, 2)
+        pushDeadline(state, deadline) {
+            state.deadlines.push(deadline);
+        },
+        spliceDeadline(state, newDeadline) {
+            state.deadlines.splice(
+                state.deadlines.findIndex(deadline => newDeadline.id === deadline.id),
+                1,
+                newDeadline
             )
-            date.setMinutes(
-                payload.time.substring(3, 5)
-            )
-
-            var newDeadline = {
-                id: payload.id ? payload.id : Math.floor((Math.random() * 100000) + 1),
-                title: payload.title,
-                timestamp: date
-            }
-
-            if (!payload.id) {
-                state.deadlines.push(newDeadline);
-            } else {
-                var index = state.deadlines.findIndex(deadline => deadline.id === payload.id)
-
-                state.deadlines.splice(index, 1, newDeadline)
-            }
         },
         toggleOverlay(state) {
             state.meta.overlay = !state.meta.overlay
@@ -63,6 +47,38 @@ export default {
 
                 commit('showOverlay')
             }, 300);
+        },
+        addOrUpdate({ commit }, payload) {
+            var date = new Date(
+                payload.date.getTime()
+            );
+
+            date.setHours(
+                payload.time.substring(0, 2)
+            )
+            date.setMinutes(
+                payload.time.substring(3, 5)
+            )
+
+            var deadline = {
+                id: payload.id ? payload.id : Math.floor((Math.random() * 100000) + 1),
+                title: payload.title,
+                timestamp: date.getTime()
+            }
+
+            if (!payload.id) {
+                commit('pushDeadline', deadline)
+            } else {
+                commit('spliceDeadline', deadline)
+            }
+        },
+        saveDeadlines({ state }) {
+            state.deadlines.forEach(deadline => localStorage.setItem('deadline-' + deadline.id, JSON.stringify(deadline)))
+        },
+        restoreDeadlines({ commit }) {
+            Object.keys(localStorage)
+                .filter(key => key.substr(0, 8) == 'deadline')
+                .forEach(key => commit('pushDeadline', JSON.parse(localStorage.getItem(key))))
         }
     },
     getters: {
