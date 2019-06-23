@@ -7,9 +7,14 @@
     <!--  1 Year > x > 1 D:     H m s -->
     <div class="form-group">
       <button
-        class="btn btn-primary btn-block"
+        class="btn btn-primary btn-block btn-deadline"
         @click="$emit('edit-deadline', deadline.id)"
-      >{{deadline.title}}: {{formatted}}</button>
+      >
+        <div class="text-left">
+          <b>{{deadline.title}}:</b>
+        </div>
+        <div class="text-center">{{formatted}}</div>
+      </button>
     </div>
   </li>
 </template>
@@ -91,3 +96,9 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.btn-deadline > .text-left {
+  white-space: normal;
+}
+</style>

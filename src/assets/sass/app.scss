@@ -8,6 +8,7 @@ $background-light: #3b3b3b;
 
 body {
   background-color: $background-dark;
+  overflow-x: hidden;
 }
 
 #app {
