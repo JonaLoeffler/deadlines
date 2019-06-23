@@ -2,14 +2,14 @@ input.form-control,
 input.form-control:read-only {
   color: #fff;
   padding: 15px 25px;
-  border-radius: 50px;
+  border-radius: 0;
   border: 2px solid $background-light;
   background-color: $background-light;
 }
 
 input.form-control:focus {
   color: #fff;
-  border: 2px solid #03a9f4;
+  border-image: $gradient 10;
   background-color: $background-light;
 
   box-shadow: none !important;
@@ -23,5 +23,10 @@ label {
   width: 100% !important;
   background-color: $background-light !important;
   border: none !important;
-  border-radius: 15px !important;
+  &.cell:hover {
+    border-image: $gradient 10;
+  }
+  & .cell.selected {
+    background: $gradient 10
+  }
 }

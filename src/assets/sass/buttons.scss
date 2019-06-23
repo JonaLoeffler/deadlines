@@ -21,12 +21,12 @@
   border: 2px solid $background-light;
   padding: 10px 25px;
   color: #fff;
-  border-radius: 50px;
+  border-radius: 0;
   background-color: $background-light;
 
   &:hover {
     background-color: $background-light;
-    border: 2px solid $brand-primary;
+    border-image: $gradient 10;
   }
 }
 
