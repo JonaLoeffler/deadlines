@@ -1,9 +1,5 @@
 export default {
     state: {
-        meta: {
-            overlay: false,
-            editId: null
-        },
         deadlines: []
     },
     mutations: {
@@ -17,37 +13,8 @@ export default {
                 newDeadline
             )
         },
-        toggleOverlay(state) {
-            state.meta.overlay = !state.meta.overlay
-        },
-        showOverlay(state) {
-            state.meta.overlay = true;
-        },
-        hideOverlay(state) {
-            state.meta.overlay = false;
-        },
-        setEditId(state, id) {
-            state.meta.editId = id
-        },
-        clearEditId(state) {
-            state.meta.editId = null
-        }
     },
     actions: {
-        createDeadline({ commit }) {
-            commit('clearEditId')
-
-            commit('showOverlay')
-        },
-        editDeadline({ commit }, payload) {
-            commit('hideOverlay')
-
-            setTimeout(() => {
-                commit('setEditId', payload.id)
-
-                commit('showOverlay')
-            }, 300);
-        },
         addOrUpdate({ commit }, payload) {
             var date = new Date(
                 payload.date.getTime()
@@ -83,10 +50,8 @@ export default {
     },
     getters: {
         deadlines: state => state.deadlines,
-        deadlineToEdit: state => state.deadlines.find(deadline => deadline.id === state.meta.editId),
         sorted: state => state.deadlines.sort((a, b) => a.timestamp > b.timestamp),
         future: (state, getters) => getters.sorted.filter(deadline => deadline.timestamp >= new Date().getTime()),
         past: (state, getters) => getters.sorted.filter(deadline => deadline.timestamp < new Date().getTime()),
-        overlay: state => state.meta.overlay
     }
 }

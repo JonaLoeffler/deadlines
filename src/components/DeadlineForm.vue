@@ -1,51 +1,55 @@
 <template>
-  <div>
-    <h3>
-      Deadline
-      <span v-if="deadlineToEdit">bearbeiten</span>
-      <span v-if="!deadlineToEdit">erstellen</span>
-      <button class="btn btn-close float-right" v-if="overlay" @click="toggleOverlay()">
-        <i class="fa fa-times"></i>
-      </button>
-    </h3>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h3>
+          Deadline
+          <span v-if="deadlineToEdit">bearbeiten</span>
+          <span v-if="!deadlineToEdit">erstellen</span>
+          <router-link :to="{name: 'home'}" class="btn btn-close float-right">
+            <i class="fa fa-times"></i>
+          </router-link>
+        </h3>
 
-    <form @submit.prevent="submit" class="form">
-      <div class="form-group"></div>
-      <div class="form-group form-row">
-        <div class="col-12">
-          <label>Titel</label>
-          <input type="text" class="form-control" v-model="deadline.title" required autofocus>
-        </div>
+        <form @submit.prevent="submit" class="form">
+          <div class="form-group"></div>
+          <div class="form-group form-row">
+            <div class="col-12">
+              <label>Titel</label>
+              <input type="text" class="form-control" v-model="deadline.title" required autofocus />
+            </div>
+          </div>
+          <div class="form-group form-row">
+            <div class="col-12">
+              <label>Datum</label>
+              <datepicker
+                v-model="deadline.date"
+                :bootstrap-styling="true"
+                format="dd.MM.yyyy"
+                :monday-first="true"
+                :inline="true"
+                :required="true"
+              ></datepicker>
+            </div>
+          </div>
+          <div class="form-group form-row">
+            <div class="col-12">
+              <label>Uhrzeit</label>
+              <input class="form-control" type="time" v-model="deadline.time" required />
+            </div>
+          </div>
+          <div class="form-group text-right">
+            <button type="submit" class="btn btn-primary">Speichern</button>
+          </div>
+        </form>
       </div>
-      <div class="form-group form-row">
-        <div class="col-12">
-          <label>Datum</label>
-          <datepicker
-            v-model="deadline.date"
-            :bootstrap-styling="true"
-            format="dd.MM.yyyy"
-            :monday-first="true"
-            :inline="true"
-            :required="true"
-          ></datepicker>
-        </div>
-      </div>
-      <div class="form-group form-row">
-        <div class="col-12">
-          <label>Uhrzeit</label>
-          <input class="form-control" type="time" v-model="deadline.time" required>
-        </div>
-      </div>
-      <div class="form-group text-right">
-        <button type="submit" class="btn btn-primary">Speichern</button>
-      </div>
-    </form>
+    </div>
   </div>
 </template>
 
 <script>
 import Datepicker from "vuejs-datepicker";
-import { mapMutations, mapActions, mapGetters } from "vuex";
+import { mapActions } from "vuex";
 
 export default {
   components: {
@@ -65,18 +69,20 @@ export default {
       }
     };
   },
-  computed: {
-    ...mapGetters(["overlay", "deadlineToEdit"])
+  props: {
+    deadlineToEdit: {
+      type: Object,
+      required: false
+    }
   },
   methods: {
-    ...mapMutations(["toggleOverlay"]),
     ...mapActions(["addOrUpdate", "saveDeadlines"]),
     submit: function() {
       this.addOrUpdate(this.deadline);
 
       this.saveDeadlines();
 
-      this.toggleOverlay();
+      this.$router.push({ name: "home" });
     },
     pad: function(value) {
       return String("00" + value).slice(-2);

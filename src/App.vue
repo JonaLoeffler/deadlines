@@ -4,50 +4,43 @@
       <div class="container">
         <div class="row">
           <div class="col">
-            <h1>Deadlines</h1>
+            <router-link :to="{name: 'home'}">
+              <h1>Deadlines</h1>
+            </router-link>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="container mt-4">
-      <div class="row">
-        <div id="list" class="col">
-          <deadline-list></deadline-list>
-        </div>
-        <transition name="slide">
-          <div id="form-overlay" class="col col-md-4" v-if="overlay">
-            <deadline-form></deadline-form>
-          </div>
-        </transition>
-      </div>
-      <div class="row">
-        <div class="col text-right">
-          <button id="add" class="btn btn-fab" @click="createDeadline()" v-if="!overlay">
-            <i class="fa fa-plus"></i>
-          </button>
-        </div>
-      </div>
-    </div>
+    <transition :name="transitionName" mode="out-in">
+      <router-view class="mt-4"></router-view>
+    </transition>
   </div>
 </template>
 
 <script>
-import DeadlineList from "./components/DeadlineList";
-import DeadlineForm from "./components/DeadlineForm";
-import { mapGetters, mapActions } from "vuex";
+import { mapActions } from "vuex";
 
 export default {
   name: "app",
-  components: {
-    DeadlineList,
-    DeadlineForm
-  },
-  computed: {
-    ...mapGetters(["overlay"])
+
+  data() {
+    return {
+      transitionName: "slide-left"
+    }
   },
   methods: {
-    ...mapActions(["createDeadline"])
+    ...mapActions(["restoreDeadlines"])
+  },
+  watch: {
+    $route(to, from) {
+      const toDepth = to.path.split("/").length;
+      const fromDepth = from.path.split("/").length;
+      this.transitionName = toDepth < fromDepth ? "slide-right" : "slide-left";
+    }
+  },
+  mounted() {
+    this.restoreDeadlines();
   }
 };
 </script>

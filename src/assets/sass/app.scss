@@ -32,24 +32,10 @@ body {
 
   #title h1 {
     font-size: 2rem;
+    color: #fff;
   }
 }
 
 #title h1 {
   margin-bottom: 0;
-}
-
-#form-overlay {
-  z-index: 1000;
-  background-color: $background-dark;
-  border-left: 2px solid $brand-primary;
-}
-
-@media (max-width: 768px) {
-  #form-overlay {
-    border: none;
-    position: absolute;
-    left: 0;
-    right: 0;
-  }
 }

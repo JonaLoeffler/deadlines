@@ -1,15 +1,29 @@
-@keyframes enter {
+@keyframes slide-left {
   0% {
-    transform: translateX(100%);
+    transform: translateX(0);
   }
   100% {
-    transform: translateX(0);
+    transform: translateX(-100vw);
   }
 }
 
-.slide-enter-active {
-  animation: enter .3s ease-in-out;
+@keyframes slide-right {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100vw);
+  }
 }
-.slide-leave-active {
-  animation: enter .3s ease-in-out reverse;
+
+.slide-left-enter,
+.slide-right-leave-active {
+  transition: transform 0.2s ease;
+  animation: slide-right .2s ease;
+}
+
+.slide-left-enter-active,
+.slide-right-enter {
+  transition: transform 0.2s ease;
+  animation: slide-right .2s ease reverse;
 }

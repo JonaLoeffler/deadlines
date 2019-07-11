@@ -6,15 +6,12 @@
     <!--  1 Year > x > 1 D:     D H m -->
     <!--  1 Year > x > 1 D:     H m s -->
     <div class="form-group">
-      <button
-        class="btn btn-primary btn-block btn-deadline"
-        @click="$emit('edit-deadline', deadline.id)"
-      >
+      <router-link :to="{name: 'deadline.edit', params: {deadlineToEdit: deadline}}" class="btn btn-primary btn-block btn-deadline">
         <div class="text-left">
           <b>{{deadline.title}}:</b>
         </div>
         <div class="text-center">{{formatted}}</div>
-      </button>
+      </router-link>
     </div>
   </li>
 </template>
