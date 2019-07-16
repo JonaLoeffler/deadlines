@@ -6,6 +6,7 @@ $background-light: #3b3b3b;
 
 $gradient: linear-gradient(-20deg, $brand-primary-gradient, $brand-primary);
 
+@import "fonts";
 @import "forms";
 @import "buttons";
 @import "transitions";

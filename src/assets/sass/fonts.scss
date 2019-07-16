@@ -1,0 +1,12 @@
+@font-face {
+  font-family: "Digital-7";
+  src: url("assets/fonts/digital-7.ttf");
+}
+
+.font-digital {
+  font-family: "Digital-7";
+  font-size: 2.3rem;
+  background: $gradient;
+  background-clip: text;
+  color: transparent;
+}

@@ -15,6 +15,13 @@ workbox.routing.registerRoute(
 );
 
 workbox.routing.registerRoute(
+    /\.(?:ttf|woff|woff2)$/,
+    workbox.strategies.staleWhileRevalidate({
+        cacheName: 'fonts',
+    }),
+);
+
+workbox.routing.registerRoute(
     new RegExp('https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css'),
     workbox.strategies.staleWhileRevalidate({
         cacheName: 'bootstrap',

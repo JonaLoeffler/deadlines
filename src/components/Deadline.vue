@@ -8,7 +8,14 @@
         <div class="text-left">
           <b>{{deadline.title}}:</b>
         </div>
-        <div class="text-center">{{formatted}}</div>
+        <div class="text-center">
+          <span v-if="days > 0">
+            <span class="font-digital">{{days}}</span>Tage
+          </span>
+          <span class="font-digital">{{pad(hours)}}</span>H
+          <span class="font-digital">{{pad(minutes)}}</span>M
+          <span class="font-digital">{{pad(seconds)}}</span>S
+        </div>
       </router-link>
     </div>
   </li>
@@ -38,18 +45,6 @@ export default {
     }
   },
   computed: {
-    formatted: function() {
-      return (
-        this.days +
-        " Tage " +
-        this.hours +
-        "H " +
-        this.minutes +
-        "M " +
-        this.seconds +
-        "S"
-      );
-    },
     remaining: function() {
       return new Date(this.deadline.timestamp - this.now * 1000);
     },

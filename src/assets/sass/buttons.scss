@@ -19,7 +19,7 @@
 
 .btn-primary {
   border: 2px solid $background-light;
-  padding: 10px 25px;
+  padding: 7px 20px;
   color: #fff;
   border-radius: 0;
   background-color: $background-light;
@@ -28,6 +28,10 @@
     background-color: $background-light;
     border-image: $gradient 10;
   }
+}
+
+.btn-dark {
+  background-color: $background-light;
 }
 
 .btn-fab {
