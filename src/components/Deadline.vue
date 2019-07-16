@@ -1,12 +1,10 @@
 <template>
   <li>
-    <!-- Y M D H m s -->
-    <!--           x > 1 Year:  Y M D -->
-    <!--  1 Year > x > 1 D:     M D H -->
-    <!--  1 Year > x > 1 D:     D H m -->
-    <!--  1 Year > x > 1 D:     H m s -->
     <div class="form-group">
-      <router-link :to="{name: 'deadline.edit', params: {deadlineToEdit: deadline}}" class="btn btn-primary btn-block btn-deadline">
+      <router-link
+        :to="{name: 'deadline.edit', params: {deadlineToEdit: deadline}}"
+        class="btn btn-primary btn-block btn-deadline"
+      >
         <div class="text-left">
           <b>{{deadline.title}}:</b>
         </div>
@@ -41,33 +39,16 @@ export default {
   },
   computed: {
     formatted: function() {
-      if (this.years > 1) {
-        return (
-          this.years +
-          " Jahre, " +
-          this.months +
-          " Monate, " +
-          this.days +
-          " Tage, "
-        );
-      } else if (this.days > 1) {
-        return (
-          this.months +
-          " Monate, " +
-          this.days +
-          " Tage, " +
-          this.hours +
-          " Stunden"
-        );
-      } else {
-        return (
-          this.pad(this.hours) +
-          ":" +
-          this.pad(this.minutes) +
-          ":" +
-          this.pad(this.seconds)
-        );
-      }
+      return (
+        this.days +
+        " Tage " +
+        this.hours +
+        "H " +
+        this.minutes +
+        "M " +
+        this.seconds +
+        "S"
+      );
     },
     remaining: function() {
       return new Date(this.deadline.timestamp - this.now * 1000);
@@ -79,7 +60,7 @@ export default {
       return this.remaining.getMonth() || 0;
     },
     days: function() {
-      return this.remaining.getDate() || 0;
+      return Math.round(this.remaining / (24 * 60 * 60 * 1000));
     },
     hours: function() {
       return this.remaining.getHours() || 0;

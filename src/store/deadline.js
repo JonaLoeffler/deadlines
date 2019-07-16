@@ -50,7 +50,7 @@ export default {
     },
     getters: {
         deadlines: state => state.deadlines,
-        sorted: state => state.deadlines.sort((a, b) => a.timestamp > b.timestamp),
+        sorted: state => state.deadlines.sort((a, b) => a.timestamp - b.timestamp),
         future: (state, getters) => getters.sorted.filter(deadline => deadline.timestamp >= new Date().getTime()),
         past: (state, getters) => getters.sorted.filter(deadline => deadline.timestamp < new Date().getTime()),
     }
