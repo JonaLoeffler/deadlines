@@ -2,6 +2,9 @@ module.exports = {
   publicPath: process.env.NODE_ENV === 'production'
     ? '/deadlines/'
     : '/',
+  configureWebpack: {
+    devtool: 'source-map'
+  },
   pwa: {
     name: 'Deadlines',
     themeColor: '#03a9f4',
@@ -16,5 +19,5 @@ module.exports = {
       swSrc: 'public/service-worker.js',
       // ...other Workbox options...
     }
-  }    
+  }
 }
