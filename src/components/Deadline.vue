@@ -8,13 +8,19 @@
         <div class="text-left">
           <b>{{deadline.title}}:</b>
         </div>
-        <div class="text-center">
+        <div class="text-center" v-if="deadline.timestamp > Date.now()">
           <span v-if="days > 0">
-            <span class="font-digital">{{days}}</span>Tage
+            <span class="font-digital">{{days}}</span>  Tage
           </span>
           <span class="font-digital">{{pad(hours)}}</span>H
           <span class="font-digital">{{pad(minutes)}}</span>M
           <span class="font-digital">{{pad(seconds)}}</span>S
+        </div>
+
+        <div class="text-center" v-if="deadline.timestamp <= Date.now()">
+          <span class="font-digital">
+            <small>{{new Date(deadline.timestamp).toLocaleString()}}</small>
+          </span>
         </div>
       </router-link>
     </div>
@@ -47,12 +53,6 @@ export default {
   computed: {
     remaining: function() {
       return new Date(this.deadline.timestamp - this.now * 1000);
-    },
-    years: function() {
-      return this.remaining.getFullYear() - 1970 || 0;
-    },
-    months: function() {
-      return this.remaining.getMonth() || 0;
     },
     days: function() {
       return Math.round(this.remaining / (24 * 60 * 60 * 1000));
