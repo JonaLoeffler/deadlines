@@ -6,7 +6,22 @@
 .font-digital {
   font-family: "Digital-7";
   font-size: 2.3rem;
-  background: $gradient;
+
+  /* Fallback: Set a background color. */
+  background-color: $brand-primary-gradient;
+
+  /* Create the gradient. */
+  background-image: $gradient;
+
+  /* Set the background size and repeat properties. */
+  background-size: 100%;
+  background-repeat: repeat;
+
+  /* Use the text as a mask for the background. */
+  /* This will show the gradient as a text color rather than element bg. */
   background-clip: text;
-  color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
 }
