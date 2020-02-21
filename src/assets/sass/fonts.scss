@@ -11,17 +11,14 @@
   background-color: $brand-primary-gradient;
 
   /* Create the gradient. */
-  background-image: $gradient;
-
-  /* Set the background size and repeat properties. */
-  background-size: 100%;
-  background-repeat: repeat;
+  background: $gradient;
 
   /* Use the text as a mask for the background. */
   /* This will show the gradient as a text color rather than element bg. */
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  -moz-background-clip: text;
-  -moz-text-fill-color: transparent;
+
+  /* Fix weird text clipping*/
+  display: inline-block;
 }
