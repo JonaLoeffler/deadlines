@@ -10,7 +10,7 @@
         </div>
         <div class="text-center" v-if="deadline.timestamp > Date.now()">
           <span v-if="days > 0">
-            <span class="font-digital">{{days}}</span>  Tage
+            <span class="font-digital">{{days}}</span> Tage
           </span>
           <span class="font-digital">{{pad(hours)}}</span>H
           <span class="font-digital">{{pad(minutes)}}</span>M
@@ -37,13 +37,13 @@ export default {
   },
   data() {
     return {
-      now: Math.trunc(new Date().getTime() / 1000)
+      now: new Date().getTime()
     };
   },
   mounted() {
     window.setInterval(() => {
-      this.now = Math.trunc(new Date().getTime() / 1000);
-    });
+      this.now = new Date().getTime();
+    }, 1000);
   },
   methods: {
     pad: function(value) {
@@ -52,13 +52,13 @@ export default {
   },
   computed: {
     remaining: function() {
-      return new Date(this.deadline.timestamp - this.now * 1000);
+      return new Date(this.deadline.timestamp - this.now);
     },
     days: function() {
       return Math.round(this.remaining / (24 * 60 * 60 * 1000));
     },
     hours: function() {
-      return this.remaining.getHours() || 0;
+      return this.remaining.getHours() - 1 || 0;
     },
     minutes: function() {
       return this.remaining.getMinutes() || 0;
