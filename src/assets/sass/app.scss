@@ -11,6 +11,7 @@ $gradient: linear-gradient(-20deg, $brand-primary-gradient, $brand-primary);
 
 @import "fonts";
 @import "forms";
+@import "navbar";
 @import "buttons";
 @import "transitions";
 
@@ -21,27 +22,10 @@ body {
 
 #app {
   color: $text-light;
-  min-height: 100vh;
 }
 
-#title {
-  padding: 15px 20px;
-  background-image: $gradient;
-}
-
-@media (max-width: 992px) {
-  #title {
-    padding: 7px 10px;
-  }
-
-  #title h1 {
-    font-size: 2rem;
-    color: $text-lighter;
-  }
-}
-
-#title h1 {
-  margin-bottom: 0;
+#main {
+  margin-top: calc(64px + 1.5rem);
 }
 
 #add {

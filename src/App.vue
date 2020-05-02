@@ -1,20 +1,16 @@
 <template>
   <div id="app">
-    <div id="title">
+    <nav class="navbar navbar-light fixed-top">
       <div class="container">
-        <div class="row">
-          <div class="col">
-            <router-link :to="{name: 'home'}">
-              <h1>Deadlines</h1>
-            </router-link>
-          </div>
-        </div>
+        <router-link :to="{name: 'home'}" class="navbar-brand">Deadlines</router-link>
       </div>
-    </div>
+    </nav>
 
-    <transition :name="transitionName" mode="out-in">
-      <router-view class="mt-4"></router-view>
-    </transition>
+    <main id="main">
+      <transition :name="transitionName" mode="out-in">
+        <router-view></router-view>
+      </transition>
+    </main>
   </div>
 </template>
 
@@ -27,7 +23,7 @@ export default {
   data() {
     return {
       transitionName: "slide-left"
-    }
+    };
   },
   methods: {
     ...mapActions(["restoreDeadlines"])
