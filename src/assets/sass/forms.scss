@@ -1,18 +1,16 @@
-input.form-control,
-input.form-control:read-only {
-  color: #fff;
-  padding: 15px 25px;
+input.form-control {
+  color: $text-light;
+  padding: 7px 15px;
   border-radius: 0;
+  background-color: $background-light;
   border: 2px solid $background-light;
-  background-color: $background-light;
-}
 
-input.form-control:focus {
-  color: #fff;
-  border-image: $gradient 10;
-  background-color: $background-light;
-
-  box-shadow: none !important;
+  &:focus {
+    border-image: $gradient 10;
+    background-color: $background-light;
+    color: $text-light;
+    box-shadow: none;
+  }
 }
 
 label {
@@ -23,10 +21,17 @@ label {
   width: 100% !important;
   background-color: $background-light !important;
   border: none !important;
+  & > header > span.next::after {
+    border-left: 10px solid $text-dark;
+  }
+  & > header > span.prev::after {
+    border-right: 10px solid $text-dark;
+  }
   &.cell:hover {
     border-image: $gradient 10;
   }
   & .cell.selected {
-    background: $gradient 10
+    background: $gradient 10;
+    color: $text-dark;
   }
 }

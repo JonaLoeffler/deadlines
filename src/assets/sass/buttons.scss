@@ -20,7 +20,7 @@
 .btn-primary {
   border: 2px solid $background-light;
   padding: 7px 20px;
-  color: #fff;
+  color: $text-lighter;
   border-radius: 0;
   background-color: $background-light;
 
@@ -31,11 +31,12 @@
 }
 
 .btn-dark {
+  color: $text-light;
   background-color: $background-light;
 }
 
 .btn-fab {
-  color: #fff;
+  color: $text-lighter;
   padding: 15px 20px;
   border-radius: 50px;
   background-color: rgb(230, 18, 18);
@@ -48,10 +49,9 @@
 }
 
 .btn-close {
-  color: #fff;
+  color: $text-light;
   background-color: transparent;
   &:hover {
     color: lightgray;
   }
 }
-

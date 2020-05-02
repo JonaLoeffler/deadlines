@@ -18,10 +18,10 @@
 
 .slide-left-enter,
 .slide-right-leave-active {
-  animation: slide-right .3s ease;
+  animation: slide-right 0.3s ease;
 }
 
 .slide-left-enter-active,
 .slide-right-enter {
-  animation: slide-right .3s ease reverse;
+  animation: slide-right 0.3s ease reverse;
 }
