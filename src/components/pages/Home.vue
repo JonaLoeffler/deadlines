@@ -7,14 +7,6 @@
     </div>
 
     <div class="row mb-3">
-      <div class="col text-right">
-        <router-link :to="{name: 'deadline.create'}" id="add" class="btn btn-fab">
-          <i class="fa fa-plus"></i>
-        </router-link>
-      </div>
-    </div>
-
-    <div class="row mb-3">
       <div class="col">
         <button
           class="btn btn-dark btn-block"
@@ -28,6 +20,10 @@
         <deadline-list :deadlines="past"></deadline-list>
       </div>
     </div>
+
+    <router-link :to="{name: 'deadline.create'}" id="add" class="btn btn-fab">
+      <i class="fa fa-plus"></i>
+    </router-link>
   </div>
 </template>
 
