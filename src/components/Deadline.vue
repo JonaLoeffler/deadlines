@@ -57,16 +57,16 @@ export default {
       return moment.duration(moment(this.deadline.date).diff(this.now));
     },
     days: function () {
-      return this.remaining.get('days');
+      return this.remaining.days();
     },
     hours: function () {
-      return this.remaining.get('hours');
+      return this.remaining.hours();
     },
     minutes: function () {
-      return this.remaining.get('minutes');
+      return this.remaining.minutes();
     },
     seconds: function () {
-      return this.remaining.get("seconds");
+      return this.remaining.seconds();
     },
   },
 };
