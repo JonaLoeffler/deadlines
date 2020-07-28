@@ -90,7 +90,7 @@ export default {
   },
   mounted() {
     if (this.deadlineToEdit) {
-      var date = new Date(this.deadlineToEdit.timestamp);
+      var date = this.deadlineToEdit.date;
       var time = this.pad(date.getHours()) + ":" + this.pad(date.getMinutes());
 
       this.deadline = {

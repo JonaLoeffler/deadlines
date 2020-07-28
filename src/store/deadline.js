@@ -16,11 +16,7 @@ export default {
     },
     actions: {
         addOrUpdate({ commit }, payload) {
-            var date = new Date(
-                payload.date.getTime()
-            );
-
-            date.setHours(
+            payload.date.setHours(
                 payload.time.substring(0, 2),
                 payload.time.substring(3, 5)
             )
@@ -28,7 +24,7 @@ export default {
             var deadline = {
                 id: payload.id ? payload.id : Math.floor((Math.random() * 100000) + 1),
                 title: payload.title,
-                timestamp: date.getTime()
+                date: payload.date
             }
 
             if (!payload.id) {
@@ -43,15 +39,26 @@ export default {
         restoreDeadlines({ commit }) {
             Object.keys(localStorage)
                 .filter(key => key.substr(0, 8) == 'deadline')
-                .forEach(key => commit('pushDeadline', JSON.parse(localStorage.getItem(key))))
+                .map(key => JSON.parse(localStorage.getItem(key)))
+                // convert old deadline format
+                .map(function (deadline) {
+                    if (deadline.hasOwnProperty('date')) {
+                        deadline.date = new Date(deadline.date)
+                    } else if (deadline.hasOwnProperty('timestamp')) {
+                        deadline.date = new Date(deadline.timestamp)
+                    }
+
+                    return deadline
+                })
+                .forEach(deadline => commit('pushDeadline', deadline))
         }
     },
     getters: {
         deadlines: state => state.deadlines,
-        sorted: state => state.deadlines.sort((a, b) => a.timestamp - b.timestamp),
-        future: (state, getters) => getters.sorted.filter(deadline => deadline.timestamp >= Date.now()),
+        sorted: state => state.deadlines.sort((a, b) => a.date.getTime() - b.date.getTime()),
+        future: (state, getters) => getters.sorted.filter(deadline => deadline.date.getTime() >= Date.now()),
         past: (state, getters) => getters.sorted
-            .filter(deadline => deadline.timestamp < Date.now())
-            .sort((a, b) => a.timestamp < b.timestamp),
+            .filter(deadline => deadline.date.getTime() < Date.now())
+            .sort((a, b) => a.date.getTime() < b.date.getTime()),
     }
 }

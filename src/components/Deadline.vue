@@ -8,7 +8,7 @@
         <div class="text-left">
           <b>{{deadline.title}}:</b>
         </div>
-        <div class="text-center" v-if="deadline.timestamp > Date.now()">
+        <div class="text-center" v-if="deadline.date > Date.now()">
           <span v-if="days > 0">
             <span class="font-digital">{{days}}</span> Tage
           </span>
@@ -17,9 +17,9 @@
           <span class="font-digital">{{pad(seconds)}}</span>S
         </div>
 
-        <div class="text-center" v-if="deadline.timestamp <= Date.now()">
+        <div class="text-center" v-if="deadline.date <= Date.now()">
           <span class="font-digital">
-            <small>{{new Date(deadline.timestamp).toLocaleString()}}</small>
+            <small>{{deadline.date.toLocaleString()}}</small>
           </span>
         </div>
       </router-link>
@@ -28,45 +28,47 @@
 </template>
 
 <script>
+import moment from "moment";
+
 export default {
   props: {
     deadline: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
-      now: new Date().getTime()
+      now: new Date(),
     };
   },
   mounted() {
     window.setInterval(() => {
-      this.now = new Date().getTime();
+      this.now = new Date();
     }, 1000);
   },
   methods: {
-    pad: function(value) {
+    pad: function (value) {
       return String("00" + value).slice(-2);
-    }
+    },
   },
   computed: {
-    remaining: function() {
-      return new Date(this.deadline.timestamp - this.now);
+    remaining: function () {
+      return moment.duration(moment(this.deadline.date).diff(this.now));
     },
-    days: function() {
-      return Math.round(this.remaining / (24 * 60 * 60 * 1000));
+    days: function () {
+      return this.remaining.get('days');
     },
-    hours: function() {
-      return this.remaining.getHours() - 1 || 0;
+    hours: function () {
+      return this.remaining.get('hours');
     },
-    minutes: function() {
-      return this.remaining.getMinutes() || 0;
+    minutes: function () {
+      return this.remaining.get('minutes');
     },
-    seconds: function() {
-      return this.remaining.getSeconds() || 0;
-    }
-  }
+    seconds: function () {
+      return this.remaining.get("seconds");
+    },
+  },
 };
 </script>
 
