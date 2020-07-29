@@ -51,6 +51,9 @@ export default {
                     return deadline
                 })
                 .forEach(deadline => commit('pushDeadline', deadline))
+        },
+        deleteDeadline({ state }, payload) {
+            state.deadlines = state.deadlines.filter(deadline => deadline.id !== payload.id)
         }
     },
     getters: {

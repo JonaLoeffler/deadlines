@@ -38,7 +38,14 @@
               <input class="form-control" type="time" v-model="deadline.time" required />
             </div>
           </div>
+
           <div class="form-group text-right">
+            <button
+              type="button"
+              v-if="this.deadlineToEdit"
+              @click="remove"
+              class="btn btn-primary btn-danger float-left"
+            >Löschen</button>
             <button type="submit" class="btn btn-primary">Speichern</button>
           </div>
         </form>
@@ -53,7 +60,7 @@ import { mapActions } from "vuex";
 
 export default {
   components: {
-    Datepicker
+    Datepicker,
   },
 
   data() {
@@ -65,28 +72,33 @@ export default {
           this.pad(new Date().getHours()) +
           ":" +
           this.pad(new Date().getMinutes() + 5),
-        date: new Date()
-      }
+        date: new Date(),
+      },
     };
   },
   props: {
     deadlineToEdit: {
       type: Object,
-      required: false
-    }
+      required: false,
+    },
   },
   methods: {
-    ...mapActions(["addOrUpdate", "saveDeadlines"]),
-    submit: function() {
+    ...mapActions(["addOrUpdate", "saveDeadlines", "deleteDeadline"]),
+    submit: function () {
       this.addOrUpdate(this.deadline);
 
       this.saveDeadlines();
 
       this.$router.push({ name: "home" });
     },
-    pad: function(value) {
+    remove: function () {
+      this.deleteDeadline(this.deadline);
+
+      this.$router.push({ name: "home" });
+    },
+    pad: function (value) {
       return String("00" + value).slice(-2);
-    }
+    },
   },
   mounted() {
     if (this.deadlineToEdit) {
@@ -97,10 +109,10 @@ export default {
         id: this.deadlineToEdit.id,
         title: this.deadlineToEdit.title,
         date: date,
-        time: time
+        time: time,
       };
     }
-  }
+  },
 };
 </script>
 
