@@ -4,7 +4,7 @@ workbox.setConfig({
 
 workbox.core.setCacheNameDetails({
     prefix: 'deadlines',
-    suffix: 'v0.1.2'
+    suffix: 'v0.1.3'
   });
 
 workbox.routing.registerRoute(
