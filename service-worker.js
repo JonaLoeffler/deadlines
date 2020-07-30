@@ -1,4 +1,4 @@
-importScripts("/deadlines/precache-manifest.8c5c4c60b2558aa2cdd69db10a43a5ee.js", "https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
+importScripts("/deadlines/precache-manifest.7c052d9168a8c9f0791bcc18b24223fe.js", "https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 workbox.setConfig({
     debug: true,
@@ -6,7 +6,7 @@ workbox.setConfig({
 
 workbox.core.setCacheNameDetails({
     prefix: 'deadlines',
-    suffix: 'v0.1.3'
+    suffix: 'v0.1.4'
   });
 
 workbox.routing.registerRoute(
