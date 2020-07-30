@@ -57,7 +57,7 @@ export default {
       return moment.duration(moment(this.deadline.date).diff(this.now));
     },
     days: function () {
-      return this.remaining.days();
+      return Math.floor(this.remaining.asDays());
     },
     hours: function () {
       return this.remaining.hours();
