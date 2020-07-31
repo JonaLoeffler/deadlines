@@ -54,6 +54,8 @@ export default {
         },
         deleteDeadline({ state }, payload) {
             state.deadlines = state.deadlines.filter(deadline => deadline.id !== payload.id)
+
+            localStorage.removeItem('deadline-' + payload.id)
         }
     },
     getters: {
