@@ -10,7 +10,7 @@
   "dependencies": {
     "core-js": "^2.6.11",
     "datepicker": "0.0.0",
-    "moment": "^2.27.0",
+    "moment": "^2.29.2",
     "register-service-worker": "^1.7.1",
     "vue": "^2.6.11",
     "vue-router": "^3.4.2",
